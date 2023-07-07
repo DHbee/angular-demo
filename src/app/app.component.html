@@ -1,41 +1,126 @@
 
-<tempate-variable></tempate-variable>
+<script src="app.component.ts"></script>
 
 <input-decorator [childVar]="parentInputVar"></input-decorator>
 
 <div>
-  <output-decorator (childEvent)="parentOutputVar = $event"></output-decorator>
+  <output-decorator (childEvent)="getChildData($event)"></output-decorator>
   {{parentOutputVar}}
   <p>&nbsp;</p>
 </div>
 
+<tempate-variable></tempate-variable>
+
+<!-- child - parent communication happens through template variable-->
 <div>
   <template-reference #tref></template-reference>
   {{tref.data}}
   {{setTemplateReferenceData(tref.data)}}
 </div>
 
-
+<!-- 
+  @viewchild accepts class name of child and 
+  returns reference of sibling element.
+-->
 <div>
   <p> view child:</p>
   <view-child></view-child>
   <button (click)="printChildData()"> button </button>
 </div>
 
+<!-- 
+  @viewchild accepts template variable of sibling element and
+  returns reference of sibling element.
+
+  It is used for child - parent commnunication.
+-->
 <div>
   <p> view child - template variable:</p>
   <view-child #vchild></view-child>
   <button (click)="printChildTemplateVariableData()"> button </button>
 </div>
 
+<!-- 
+  @viewchild accepts template variable of sibling element and
+  returns reference of sibling element, using this reference,
+  element style can be modified, element content can be modified.
+
+  It is used for child - parent commnunication.
+-->
 <div>
   <div #templateDiv> view child - template variable with div:</div>
   <button (click)="printChildTemplateDivVariableData()"> button </button>
 </div>
 
+<!-- 
+  @viewchildren accepts template variable of sibilng elements
+  and returns reference of sibling elements. 
+
+  It is used for child - parent commnunication.
+-->
 <div>
   <p><b>view childrens:</b></p>
   <p #para>it is paragraph 1</p>
   <p #para>it is paragraph 2</p>
   <button (click)="printViewChildren()"> button </button>
+</div>
+
+<div>
+  <observer-demo></observer-demo>
+</div>
+
+
+  <!-- 
+    ng content tag will be removed and displays all items
+  -->
+<div>
+  <div> <h3> >> ng content demo </h3></div>
+  
+  <ng-content-demo [items]="['Banana','Apples', 'Mangoes']">
+    <b class="itemsClass"> fruites: </b>
+  </ng-content-demo>
+
+  <ng-content-demo [items]="['Onions','Tomotoes', 'Potatoes']">
+    <b class="itemsClass"> vegtables </b>
+  </ng-content-demo>
+</div>
+
+<!-- ng container demo -->
+<div>
+  <div> <h3> >> ng container demo </h3></div>
+  <b> ng container problem: it creates 5 div elements</b>
+  <div *ngFor="let no of [1,2,3,4,5]">
+    {{no}}
+  </div>
+
+  <b>solution:</b>
+  <ng-container *ngFor="let no of [5,6,7,8,9]">
+      {{no}}
+  </ng-container>
+</div>
+
+<!-- ng template demo -->
+<div>
+  <div><h3> >> ng template demo</h3></div>
+  <div *ngIf="isLogin; else customTemplate">
+    Login success
+  </div>
+
+  <ng-template #customTemplate>
+    Login failed
+  </ng-template>
+</div>
+
+<!-- 1. If any parent properties changes happen other than object or array, 
+  ngOnChanges() is invoked in child component.
+     2. If any parent properties changes on object or array, 
+  ngDoCheck() is invoked in child component 
+-->
+<div>
+  <div><h3> >> ng onchange demo</h3></div>
+  <ng-onchanges-demo [userProfileStatus]="puserProfileStatus"
+  [contacts]="contacts">    
+  </ng-onchanges-demo>
+  <button (click)="verifyNgOnchanges()"> button1 </button>
+  <button (click)="verifyNgOnchangesOnModifyArray()"> button2 </button>
 </div>

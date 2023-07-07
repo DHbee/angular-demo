@@ -8,7 +8,7 @@ export class OutputDecorator {
 
   @Output() childEvent = new EventEmitter();
 
-  test(){
+  test(event ?: any){
     this.childEvent.emit("it is child component");
   }
 

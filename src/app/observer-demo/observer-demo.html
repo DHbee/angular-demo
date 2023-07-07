@@ -1,2 +1,57 @@
+<h3> ***** rx js ***** </h3>
+<div> 
+  <b>Observable demo: </b>
+  <button (click)="this.observer1()">Observable demo</button>
+</div>
 
-<div> <b>observer demo: </b></div>
+<div>
+  <h3>creation:</h3>
+  <button (click)="this.of1()">of</button>
+  <button (click)="this.from1()">from</button>
+  <button (click)="this.interval1()">interval</button>
+  <button (click)="this.throwError1()">throwError</button>
+</div>
+
+<div>
+  <h3>filter:</h3>
+  <button (click)="this.distinct1()">distinct</button>
+  <button (click)="this.filter1()">filter</button>
+  <button (click)="this.skip1()">skip</button>
+  <button (click)="this.take1()">take</button>
+  <button (click)="this.find1()">find</button>
+</div>
+
+<div>
+  <h3>transformation:</h3>
+  <button (click)="this.map1()">map</button>
+  <button (click)="this.mergeMap1()">merge-map</button>
+  <button (click)="this.mergeMap1()">switch-map</button>
+  <button (click)="this.concatMap1()">concat-map</button>
+</div>
+
+<div>
+  <h3>creation join:</h3>
+  <button (click)="this.merge1()">creation join merge</button>
+  <button (click)="this.concat1()">creation join concat</button>
+</div>
+
+<div>
+  <h3>error handling:</h3>
+  <button (click)="this.errorHandling1()">1 - throw error</button>
+  <button (click)="this.errorHandling2()">2 - throw & catch error</button>
+  <button (click)="this.errorHandling3()">3 - throw & catch error</button>
+  <button (click)="this.errorHandling4()">4 - throw & catch & retry</button>
+  <button (click)="this.errorHandling5()">5 - throw & throw</button>
+</div>
+
+<div>
+  <h3>utility:</h3>
+  <button (click)="this.tap1()">tap</button>
+  <button (click)="this.delay1()">delay</button>  
+</div>
+
+<div>
+  <h3>aggregate:</h3>
+  <button>count</button>
+  <button>max</button>  
+</div>

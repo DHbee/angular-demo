@@ -9,6 +9,9 @@ import {InputDecorator} from "./input-decorator/input-decorator.component";
 import {OutputDecorator} from "./output-decorator/output-decorator.component";
 import {TemplateReference} from "./template-reference/template-reference.component";
 import {ViewChildDemo} from "./view-child/view-child.component";
+import {ObserverDemo} from "./observer-demo/observer-demo.component";
+import { NgContentDemo } from './ng-content-demo/ng-content-demo.component';
+import { NgOnChangesDemo } from './ng-onchanges-demo/ngonchanges-demo.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import {ViewChildDemo} from "./view-child/view-child.component";
     InputDecorator,
     OutputDecorator,
     TemplateReference,
-    ViewChildDemo
+    ViewChildDemo,
+    ObserverDemo,
+    NgContentDemo,
+    NgOnChangesDemo
   ],
   imports: [
     BrowserModule,

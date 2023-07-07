@@ -1,4 +1,4 @@
-import {Component, ViewChild, ViewChildren} from '@angular/core';
+import {Component, EventEmitter, ViewChild, ViewChildren} from '@angular/core';
 import { AppService } from 'src/services/app.service';
 import {ViewChildDemo} from "./view-child/view-child.component";
 
@@ -14,25 +14,34 @@ export class AppComponent {
 
   parentOutputVar: String = "parentOutputVar variable";
 
-
   @ViewChild(ViewChildDemo) viewChild: any;
 
-  constructor(appService : AppService){
+  @ViewChild("vchild") viewChildTemplateVar: any;
 
+  @ViewChild("templateDiv") viewChildTemplateDivVar: any;
+
+  @ViewChildren("para") viewChildrenPara: any;
+
+  isLogin: boolean = false;
+
+  puserProfileStatus: string = "hi";
+  contacts: string[] = ["partha"];
+
+  constructor(appService : AppService){
   }
 
+  getChildData(event: any){
+    this.parentOutputVar = event;
+    console.log(event);    
+  }
   setTemplateReferenceData(data: string){
-    console.log(data)
+   // console.log(data)
   }
 
   printChildData(){
     console.log(this.viewChild.data)
     return this.viewChild.data;
   }
-
-  @ViewChild("vchild") viewChildTemplateVar: any;
-
-  @ViewChild("templateDiv") viewChildTemplateDivVar: any;
 
   printChildTemplateVariableData(){
     console.log(this.viewChildTemplateVar)
@@ -43,15 +52,18 @@ export class AppComponent {
     console.log(this.viewChildTemplateDivVar)
   }
 
-
-  @ViewChildren("para") viewChildrenPara: any;
-
   printViewChildren(){
     for (let ele of this.viewChildrenPara){
       ele.nativeElement.style.background="red";
     }
   }
 
+  verifyNgOnchanges(){
+    this.puserProfileStatus  = "Hello";  
+  }
 
+  verifyNgOnchangesOnModifyArray(){
+    this.contacts[1]="saradhi"
+  }
 
 }
